@@ -1,0 +1,59 @@
+{
+  "calendars": {
+    "24x7": {
+      "type": "24x7",
+      "timezone": "UTC"
+    },
+    "XNYS": {
+      "type": "weekly",
+      "timezone": "UTC",
+      "open_days": [0, 1, 2, 3, 4],
+      "open_time": "13:30",
+      "close_time": "20:00",
+      "session": "regular"
+    }
+  },
+  "asset_classes": {
+    "crypto": {
+      "calendar": "24x7",
+      "session": "24x7",
+      "timezone": "UTC"
+    },
+    "equity": {
+      "calendar": "XNYS",
+      "session": "regular",
+      "timezone": "UTC"
+    },
+    "option": {
+      "calendar": "24x7",
+      "session": "24x7",
+      "timezone": "UTC"
+    },
+    "news": {
+      "calendar": "24x7",
+      "session": "24x7",
+      "timezone": "UTC"
+    }
+  },
+  "venues": {
+    "binance": {
+      "asset_class": "crypto",
+      "calendar": "24x7",
+      "session": "24x7",
+      "timezone": "UTC"
+    },
+    "deribit": {
+      "asset_class": "option",
+      "calendar": "24x7",
+      "session": "24x7",
+      "timezone": "UTC"
+    },
+    "nasdaq": {
+      "asset_class": "equity",
+      "calendar": "XNYS",
+      "session": "regular",
+      "timezone": "UTC"
+    }
+  },
+  "symbols": {}
+}

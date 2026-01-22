@@ -1,0 +1,189 @@
+AGENTS.md
+# --------------------------------------
+# Agents
+# --------------------------------------
+docs/audits/
+artifacts/codex
+
+
+
+*.csv
+*.log
+# Operating System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# notebook experimental 
+*.ipynb 
+
+# Node.js dependencies
+node_modules/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Java compiled class files
+*.class
+
+# Java build directories
+/build/
+bin/
+
+# Visual Studio Code settings
+.vscode/
+
+# macOS system files
+*.DS_Store
+
+# Backup files
+*~ 
+*.bak
+*.swp
+
+# Log files
+*.log
+
+# Large files
+*.zip
+*.tar.gz
+*.gz
+*.rar
+*.iso
+*.mp4
+*.avi
+*.mkv
+*.psd
+
+# IDE specific files
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Other
+*.env            # Environment variables
+*.db             # Database files
+*.sqlite3        # SQLite databases
+*.pem            # SSL certificate files
+*.key            # Private keys
+
+# Git LFS files
+*.psd
+*.zip
+
+# Archive files
+*.tar
+*.tgz
+*.7z
+
+# Temporary files
+tmp/
+temp/
+# --------------------------------------
+# OS files
+# --------------------------------------
+.DS_Store
+Thumbs.db
+
+# --------------------------------------
+# Python cache & build
+# --------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+build/
+dist/
+
+# --------------------------------------
+# Python virtual environments
+# --------------------------------------
+venv/
+.venv/
+.env/
+
+# --------------------------------------
+# IDE settings
+# --------------------------------------
+.vscode/
+.idea/
+
+# --------------------------------------
+# Data folder (ignore raw datasets, keep code)
+# --------------------------------------
+data/cleaned/
+data/raw/
+data/**/*.csv
+data/**/*.parquet
+data/**/*.json
+data/**/*.feather
+data/**/*.xlsx
+data/**/*.npz
+data/**/*.npy
+data/data_structure_design.txt
+# allow Python modules inside data/
+!data/**/*.py
+!data/**/__init__.py
+!data/.gitkeep
+!data/*.md
+!data/structure_design.txt
+!data/sample/ohlcv/BTCUSDT/15m/2025.parquet
+!data/sample/ohlcv/ETHUSDT/15m/2025.parquet
+!data/sample/option_chain/BTC/5m/2025/2025_12_29.parquet
+!data/sample/option_chain/BTC/5m/2025/2025_12_30.parquet
+# --------------------------------------
+# Jupyter
+# --------------------------------------
+.ipynb_checkpoints/
+
+# --------------------------------------
+# Logs and reports
+# --------------------------------------
+*.log
+logs/
+reports/
+output/
+
+# --------------------------------------
+# Archives & heavy files
+# --------------------------------------
+*.zip
+*.tar.gz
+*.gz
+*.rar
+*.7z
+*.tar
+
+# --------------------------------------
+# Temp files
+# --------------------------------------
+*.swp
+tmp/
+temp/
+
+# --------------------------------------
+# Keys / secrets
+# --------------------------------------
+*.env
+*.pem
+*.key
+
+# core assets
+/artifacts/reports/
+/artifacts/runs/
+
+/configs/*.json
+/configs/*.yml
+/configs/*.yaml
+/configs/*.toml
+!configs/refs_sample.json
+!configs/logging.json
+
+/dev_timeline.txt
+/src/explanation.txt
+/src/quant_engine/utils/design.txt
+/src/quant_engine/data/reatime_design.txt
+/src/quant_engine/data/structure_design.txt
+apps/strategy/*.py
+!apps/strategy/strategies.py

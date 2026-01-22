@@ -1,0 +1,26 @@
+python-binance
+# pandas  -- conda install recommended
+# numpy. -- conda install recommended
+# matplotlib  -- conda install recommended
+# scikit-learn  -- conda install recommended
+# scipy  -- conda install recommended
+tqdm
+requests
+pytz
+joblib
+psutil
+ta
+
+# --- essential additions ---
+# pyarrow        # parquet support -- conda install recommended
+# scipy          # optimization for SABR/SSVI fitting -- conda install recommended
+pydantic       # config schema validation
+aiohttp        # async REST/WebSocket for live trading
+websockets     # exchange WebSocket streaming
+
+# --- dev ---
+pytest
+pytest-asyncio
+pytest-cov
+ruff
+mypy

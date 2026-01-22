@@ -1,0 +1,16 @@
+{
+  "run_id": "DEMO1",
+  "status": "success",
+  "timestamp": "2026-01-22T21:39:48.037017+00:00",
+  "result": {
+    "run_id": "DEMO1",
+    "symbol": "BTC",
+    "interval": "5m",
+    "mode": "qc",
+    "status": "completed",
+    "pipeline_version": "0.0.1-scaffold",
+    "qc_implemented": false,
+    "mc_implemented": false,
+    "regime_implemented": false
+  }
+}

@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quant-engine"
+version = "0.1.0"
+description = "Contract-driven quant research & trading engine (TradeBot v4)"
+requires-python = ">=3.9"
+
+# Runtime dependencies (kept minimal + aligned with VPS installation script)
+dependencies = [
+  "numpy",
+  "pandas",
+  "pyarrow",
+  "scipy",
+  "pytz",
+  "requests",
+  "aiohttp",
+  "websockets",
+  "pydantic",
+  "tqdm",
+  "python-dateutil",
+  "psutil",
+  "joblib",
+  "ta",
+  "python-binance",
+]
+
+[project.optional-dependencies]
+# Developer / CI dependencies
+# Install via: pip install -e ".[dev]"
+dev = [
+  "pytest",
+  "pytest-asyncio",
+  "ruff",
+  "mypy",
+  "types-requests",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"

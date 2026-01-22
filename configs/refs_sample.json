@@ -1,0 +1,20 @@
+{
+  "OHLCV_15M_180D": {
+    "interval": "15m",
+    "bootstrap": { "lookback": "180d" },
+    "cache": { "max_bars": 10000 },
+    "columns": ["open", "high", "low", "close", "volume"]
+  },
+  "OPTION_CHAIN_5M": {
+    "interval": "5m",
+    "bootstrap": { "lookback": "30d" },
+    "cache": {
+      "kind": "term",
+      "maxlen": 512,
+      "per_term_maxlen": 256,
+      "term_bucket_ms": 86400000,
+      "enable_expiry_index": true,
+      "per_expiry_maxlen": 256
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "gap_threshold_multiplier": 1.5,
+  "status_aliases": {
+    "expected_closed": ["closed", "outside_market", "out_of_market", "off_market"],
+    "halt": ["halt", "halted", "paused"],
+    "no_activity": ["no_activity", "inactive", "no_trade", "empty"]
+  }
+}

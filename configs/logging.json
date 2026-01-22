@@ -1,0 +1,112 @@
+{
+  "active_profile": "default",
+  "profiles": {
+    "default": {
+      "level": "DEBUG",
+      "format": { "json": true },
+      "handlers": {
+        "console": { "enabled": true, "level": "WARNING" },
+        "file": {
+          "enabled": true,
+          "level": "INFO",
+          "path": "artifacts/runs/{run_id}/logs/{mode}.jsonl"
+        },
+        "trace": {
+          "enabled": true,
+          "level": "INFO",
+          "path": "artifacts/runs/{run_id}/logs/trace.jsonl"
+        }
+      },
+      "debug": { "enabled": false, "modules": [] }
+    },
+
+    "monitor": {
+      "level": "INFO",
+      "format": { "json": true },
+      "handlers": {
+        "console": { "enabled": true, "level": "INFO" },
+        "file": {
+          "enabled": true,
+          "level": "INFO",
+          "path": "artifacts/runs/{run_id}/logs/{mode}.jsonl"
+        },
+        "trace": {
+          "enabled": true,
+          "level": "INFO",
+          "path": "artifacts/runs/{run_id}/logs/{mode}/trace.jsonl"
+        }
+      },
+      "debug": { "enabled": false, "modules": [] }
+    },
+
+    "backtest": {
+      "level": "INFO",
+      "format": { "json": true },
+      "handlers": {
+        "console": { "enabled": true, "level": "INFO" },
+        "file": {
+          "enabled": true,
+          "level": "INFO",
+          "path": "artifacts/runs/{run_id}/logs/{mode}.jsonl"
+        },
+        "trace": {
+          "enabled": true,
+          "level": "INFO",
+          "path": "artifacts/runs/{run_id}/logs/{mode}/trace.jsonl"
+        }
+      },
+      "debug": { "enabled": false, "modules": [] }
+    },
+
+    "debug_manual": {
+      "level": "DEBUG",
+      "format": { "json": true },
+      "handlers": {
+        "console": { "enabled": true, "level": "DEBUG" },
+        "file": {
+          "enabled": false,
+          "level": "DEBUG",
+          "path": "artifacts/runs/{run_id}/logs/{mode}.jsonl"
+        }
+      },
+      "debug": {
+        "enabled": true,
+        "modules": [ "quant_engine", "ingestion" ]
+      }
+    },
+
+    "debug_data": {
+      "level": "DEBUG",
+      "format": { "json": true },
+      "handlers": {
+        "console": { "enabled": true, "level": "DEBUG" },
+        "file": {
+          "enabled": false,
+          "level": "DEBUG",
+          "path": "artifacts/runs/{run_id}/logs/{mode}.jsonl"
+        }
+      },
+      "debug": {
+        "enabled": true,
+        "modules": [ "quant_engine.data", "ingestion" ]
+      }
+    },
+
+    "debug_strat": {
+      "level": "DEBUG",
+      "format": { "json": true },
+      "handlers": {
+        "console": { "enabled": true, "level": "DEBUG" },
+        "file": {
+          "enabled": false,
+          "level": "DEBUG",
+          "path": "artifacts/runs/{run_id}/logs/{mode}.jsonl"
+        }
+      },
+      "debug": {
+        "enabled": true,
+        "modules": [ "quant_engine.strategy", "quant_engine.decision" ]
+      }
+    }
+  }
+}
