@@ -1,54 +1,89 @@
-# SoionLab
+# SoionOption (Demo / Sandbox)
 
-[![CI](https://github.com/ZBaiY/SoionLab/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ZBaiY/SoionLab/actions/workflows/ci.yml?query=branch%3Amain)
 ![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue)
 ![Platform](https://img.shields.io/badge/platform-Ubuntu%2022.04%20%7C%20macOS-9cf)
 
-## What is SoionLab
-SoionLab is a contract-driven research engine for **cross-domain market data** with heterogeneous timing and readiness semantics,with heterogeneous timing and readiness semantics, designed for execution-constrained, time-sensitive asynchronous systems. It keeps deterministic modeling boundaries by enforcing protocol interfaces and driver-owned time across backtest, mock, and realtime modes. The runtime treats time, lifecycle, and execution constraints as explicit research objects rather than implicit control flow.
+## What is SoionOption
 
-Core research question: what is the robustness boundary under non-ideal data arrival (cross domain, ordering, frequency, completeness)?
+SoionOption is a **focused demo repository** extracted from SoionLab, dedicated to experimenting with the **option chain and IV data layer only**.
 
-## What is special: auditable execution risk
-- Async hazard exposure (multi-source arrival mismatch) before a step is evaluated.
-- Single time authority / driver-owned time to prevent lookahead-by-construction.
-- Auditable failure surface: Hard Readiness vs Soft Degradation.
+This repo is **not** a full trading engine, runtime, or strategy framework.
+It exists to:
+- validate option-chain snapshot semantics,
+- stress-test data quality control (QC) logic,
+- study uncertainty propagation and regime stability,
+in isolation from execution, async ingestion, or strategy logic.
 
-**Intended research domains**  
-SoionLab explicitly targets challenging domains such as option chains and sentiment as *execution and timing stressors*, rather than as finished modeling features.  
-These domains update asynchronously, lack closed-bar semantics, and may arrive incomplete. The current focus is on making their readiness, staleness, and absence explicit in the runtime, not on pricing or alpha extraction.
+The code here is intentionally minimal and deterministic.
 
+## Scope (What this repo does)
 
-## 3-Min Quick Start
-```bash
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt && pip install -e .
+- Batch-style, deterministic experiments on **option chain snapshots**
+- Explicit handling of:
+  - `step_ts` (evaluation anchor)
+  - `market_ts`
+  - `arrival_ts`
+- QC gating that may explicitly **reject** data (`HARD_FAIL`) instead of producing signals
+- Monte Carlo used only as **observation uncertainty propagation** (not pricing)
+- Regime detection as a **state object**, not a label
+
+## Non-scope (What this repo does NOT do)
+
+- No async ingestion
+- No runtime / driver / engine
+- No strategy execution
+- No portfolio, risk, or order routing
+- No alpha or PnL optimization
+
+Any such code that existed in SoionLab is either removed or kept only as non-importable reference.
+
+## Relationship to SoionLab
+
+This repository is a **sandbox**.
+
+Many demo modules include explicit comments like:
+
+```
+# DEMO-ONLY MODULE
+# Intended final location: src/quant_engine/data/derivatives/option_chain/...
 ```
 
-Run:
+indicating where the code is expected to be migrated once stabilized.
+
+Frozen contracts (ticks, caches, snapshots, option_chain and IV handlers) are imported directly from the original SoionLab layout and are **not modified** here.
+
+## Quick start (demo only)
+
 ```bash
-python apps/run_sample.py
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+pip install -e .
 ```
-Uses bundled data under `data/sample/` for demonstration only; intended to validate wiring + trace/log emission, not PnL. See [`docs/sample_data.md`](docs/sample_data.md) for scope and limitations.
 
-### What you will see
-- Console warnings such as `backtest.closed_bar.not_ready` or `soft_domain.not_ready` when readiness gates fail.
-- Trace JSONL at `artifacts/runs/_current/logs/trace.jsonl` (or `artifacts/runs/<run_id>/logs/trace.jsonl`).
-- Soft-readiness warnings appear as `soft_domain.not_ready` entries in `artifacts/runs/_current/logs/default.jsonl`; this run does not emit a full PnL report.
+Run the demo scaffolding:
 
-## System philosophy (brief)
-SoionLab separates responsibilities so each layer can enforce its own invariants: strategies declare structure, data handlers guard snapshot legality, and the driver owns time. The engine composes components but does not infer timestamps or data provenance.
+```bash
+python -m apps.run_option_qc --run_id DEMO1 --dataset sample --symbol BTC --interval 5m --mode qc
+```
 
-| Component | Responsibility | Owns time? | Invariant |
-| --- | --- | --- | --- |
-| Strategy | Declare structure, symbols, and wiring | No | No timestamps or I/O in the strategy definition. |
-| DataHandler | Cache ticks and align snapshots | No | Snapshots only expose data with `data_ts <= step_ts`. |
-| Driver | Advance time, ingest ticks, call `engine.step()` | Yes | Step timestamps are monotonic and driver-issued. |
+This will:
+- create `artifacts/DEMO1/logs/`
+- emit `default.jsonl`, `trace.jsonl`, `asyncio.jsonl`
+- write a placeholder QC report (logic to be filled incrementally)
 
-## Deep dive docs
-- [`docs/runtime_semantics.md`](docs/runtime_semantics.md): driver-owned time, lifecycle ordering, and runtime flow.
-- [`docs/ingestion_boundary.md`](docs/ingestion_boundary.md): ingestion boundary, readiness contracts, and async replay.
-- [`docs/contract_spec.md`](docs/contract_spec.md): protocol interfaces and cross-layer boundaries.
+## Design principle
 
-## Installation details
-For conda/apt-get setup and fuller environment notes, see [`docs/INSTALL.md`](docs/INSTALL.md).
+> If the system is not confident, it must stop.
+
+Rejection, degradation, and explicit `Unknown / NaN` outputs are first-class outcomes, not errors.
+
+## Status
+
+- [x] Repo scaffolding
+- [x] Frozen data contracts imported
+- [ ] Route A: QC Gate (in progress)
+- [ ] MC uncertainty propagation
+- [ ] Regime detector
+- [ ] Continuity / arbitrage constraints
+- [ ] Optional surface consistency checks
