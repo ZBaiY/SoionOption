@@ -1,11 +1,11 @@
-# SoionOption (Demo / Sandbox)
+# SoionOption (Research)
 
 ![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue)
 ![Platform](https://img.shields.io/badge/platform-Ubuntu%2022.04%20%7C%20macOS-9cf)
 
 ## What is SoionOption
 
-SoionOption is a **focused demo repository** extracted from SoionLab, dedicated to experimenting with the **option chain and IV data layer only**.
+SoionOption is a **focused research repository** extracted from SoionLab, dedicated to experimenting with the **option chain and IV data layer only**.
 
 This repo is **not** a full trading engine, runtime, or strategy framework.
 It exists to:
@@ -41,10 +41,10 @@ Any such code that existed in SoionLab is either removed or kept only as non-imp
 
 This repository is a **sandbox**.
 
-Many demo modules include explicit comments like:
+Many research modules include explicit comments like:
 
 ```
-# DEMO-ONLY MODULE
+# RESEARCH-ONLY MODULE
 # Intended final location: src/quant_engine/data/derivatives/option_chain/...
 ```
 
@@ -52,7 +52,7 @@ indicating where the code is expected to be migrated once stabilized.
 
 Frozen contracts (ticks, caches, snapshots, option_chain and IV handlers) are imported directly from the original SoionLab layout and are **not modified** here.
 
-## Quick start (demo only)
+## Quick start (research module only)
 
 ```bash
 python -m venv .venv
@@ -60,17 +60,6 @@ source .venv/bin/activate
 pip install -r requirements.txt
 pip install -e .
 ```
-
-Run the demo scaffolding:
-
-```bash
-python -m apps.run_option_qc --run_id DEMO1 --dataset sample --symbol BTC --interval 5m --mode qc
-```
-
-This will:
-- create `artifacts/DEMO1/logs/`
-- emit `default.jsonl`, `trace.jsonl`, `asyncio.jsonl`
-- write a placeholder QC report (logic to be filled incrementally)
 
 ## Design principle
 
